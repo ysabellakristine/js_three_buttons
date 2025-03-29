@@ -11,14 +11,11 @@
 
     <link href="styles.css" rel="stylesheet">
 
-    <!-- Reference JavaScript file -->
-    <script src="script.js" defer></script>
-
     <!-- Name on tab -->
     <title>Buttons Three</title>
     </head>
     <!--Stand in for background for now-->
-    <body class="bg-pink-800">
+    <body class="bg-pink-400">
 
           <!--BODY SECTION-->
           <div class="container mx-auto my-12 w-50 p-5 bg-black border-4 border-white border-solid text-3xl text-white">
@@ -33,12 +30,86 @@
             </ul> 
         </div>
 
-        <div class="container mx-auto my-12 w-50 p-5 border-solid text-3xl text-black">
+         <!-- Flexbox to center input form-->
+        <div class="container mx-auto my-12 w-1/2 p-5 text-3xl text-black flex flex-col">
 
-        <input type="text" id="bucket_Input" placeholder="Enter new bucketlist item"  class="border border-gray-300 p-2 text-center"> <br> <br>
-            <button onclick="add_Item()" class="bg-gray-500 text-white px-4 py-1 hover:bg-green-600 transition">Add Item</button>
-            <button onclick="changeFont_Family()" class="bg-gray-500 text-white px-4 py-1 hover:bg-green-600 transition">Change da Font to Papyrus</button>
-            <button onclick="make_Bold()" class="bg-gray-500 text-white px-4 py-1 hover:bg-green-600 transition">Make Bold</button>
+         <!-- Input form -->
+        <input type="text" id="bucket_Input" placeholder="Enter new bucket list"  class="border border-gray-300 p-2 text-center"> <br>
+
+   <!-- Flexbox for buttons -->
+        <div class="flex flex-wrap justify-center gap-4 w-full"> 
+            <button id="addItemBtn" class="bg-gray-500 text-white px-4 py-1 hover:bg-green-600 transition">Add Item</button>
+            <button id="deleteItemBtn" class="bg-gray-500 text-white px-4 py-1 hover:bg-red-700 transition">Delete Last Item</button>
+            <button id="changeFontBtn" class="bg-gray-500 text-white px-4 py-1 hover:bg-orange-600 transition">Change da Font</button>
+            <button id="makeBoldBtn" class="bg-gray-500 text-white px-4 py-1 hover:bg-purple-600 transition">Change Text Style</button>
         </div>
+                    
+        </div>
+
+ <!-- Javascript for functions -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                // to add item to list
+                function add_Item() {
+                    
+                    // gets user input and stores it
+                    let input = document.getElementById("bucket_Input").value;
+                    
+                    // if else statement for adding the item
+                    if (input.trim() !== "") {                                  // trims spaces and only adds if input isnt empty
+                        let ul = document.getElementById("bucket_List");        // finds ul with bucket_List id
+                        let li = document.createElement("li");                  // creates new list item
+                        li.textContent = input;                                 // sets text for the list
+                        ul.appendChild(li);                                     // appends list with input
+                        document.getElementById("bucket_Input").value = "";     // clears input
+                    }
+                }
+
+                // deletes last item of the list
+                function delete_Last_Item() {
+                    let ul = document.getElementById("bucket_List");
+                    if (ul.lastElementChild) {                      // checks if there is an item to remove
+                        ul.removeChild(ul.lastElementChild);        // removes last item
+                    }
+                }
+            
+                // Function to toggle font family
+                function changeFont_Family() {
+                    let ul = document.getElementById("bucket_List");            // finds ul and stores it as bucket_list
+            
+                    // If no font is present, defaults to comic sans, troubleshooting purposes
+                    if (!ul.style.fontFamily) {                                     
+                        ul.style.fontFamily = "Comic Sans MS, sans-serif";
+                    }
+                    // sets the current font style as the current font
+                    let currentFont = ul.style.fontFamily;
+                    // toggles between next and previous font
+                    let newFont = currentFont.includes("Comic Sans MS") ? "Papyrus, serif" : "Comic Sans MS, sans-serif";
+                    
+                    // if changed, that font family is deemed the newFont
+                    ul.style.fontFamily = newFont;
+                }
+                
+                // function to change font style
+                function make_Bold() {
+                    // selects list items in html
+                    let items = document.querySelectorAll("#bucket_List li");
+                    // loop through list items
+                    items.forEach(item => {
+                        // toggles between bold and normal font
+                        item.style.fontWeight = (item.style.fontWeight === "bold") ? "normal" : "bold";
+                    });
+                }
+                
+            
+                // Attach functions to buttons
+                document.getElementById("addItemBtn").addEventListener("click", add_Item);
+                document.getElementById("deleteItemBtn").addEventListener("click", delete_Last_Item);
+                document.getElementById("changeFontBtn").addEventListener("click", changeFont_Family);
+                document.getElementById("makeBoldBtn").addEventListener("click", make_Bold);
+            });
+            
+        </script>
       </body>
       </html>
