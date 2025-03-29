@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    
+    <!--installing tailwind / not for development purposes-->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- Reference JavaScript file -->
+    <script src="script.js" defer></script>
+
+    <!-- Name on tab -->
+    <title>Buttons Three</title>
+    </head>
+    <!--Stand in for background for now-->
+    <body class="bg-pink-800">
+
+          <!--BODY SECTION-->
+          <div class="container mx-auto my-12 w-50 p-5 bg-black border-4 border-white border-solid text-3xl text-white">
+
+            <h1 class="text-center text-yellow-200 font-comic"> Hi! I'm Ysabella Kristine!</h1>
+            <h2 class="text-left font-comic"> Bucket List</h2> 
+            <ul class="list-disc pl-5 font-comic" id="bucket_List"> 
+                <li>I want to be able to spend money with no guilt</li>
+                <li>I want to go to different countries</li>
+                <li>I want to adopt an aspin</li>
+                <li>I want to bring my family to another country</li>
+            </ul> 
+        </div>
+
+        <div class="container mx-auto my-12 w-50 p-5 border-solid text-3xl text-black">
+
+        <input type="text" id="bucket_Input" placeholder="Enter new bucketlist item"  class="border border-gray-300 p-2 text-center"> <br> <br>
+            <button onclick="add_Item()" class="bg-gray-500 text-white px-4 py-1 hover:bg-green-600 transition">Add Item</button>
+            <button onclick="changeFont_Family()" class="bg-gray-500 text-white px-4 py-1 hover:bg-green-600 transition">Change da Font to Papyrus</button>
+            <button onclick="make_Bold()" class="bg-gray-500 text-white px-4 py-1 hover:bg-green-600 transition">Make Bold</button>
+        </div>
+      </body>
+      </html>
